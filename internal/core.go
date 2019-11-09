@@ -18,7 +18,6 @@ func (c *CannonicalLog) Enabled(l zapcore.Level) bool {
 }
 
 func (c *CannonicalLog) With(f []zapcore.Field) zapcore.Core {
-	//fmt.Printf("adding fields: %v", f)
 	return &CannonicalLog{
 		EmptyCore:   c,
 		WrappedCore: c.WrappedCore.With(f),
@@ -35,7 +34,6 @@ func (c *CannonicalLog) Check(e zapcore.Entry, ce *zapcore.CheckedEntry) *zapcor
 
 func (c *CannonicalLog) Write(e zapcore.Entry, f []zapcore.Field) error {
 	c.Fields = append(c.Fields, f...)
-	//fmt.Printf("adding new fields at call site: %v\n", c.fields)
 	return c.WrappedCore.Write(e, f)
 }
 

@@ -19,7 +19,7 @@ func NewLogger() zap.Option {
 	})
 }
 
-func Emit(log *zap.Logger) error {
+func Emit(log *zap.Logger, fields ...zap.Field) error {
 	c, ok := log.Core().(*internal.CannonicalLog)
 	if !ok {
 		return errors.New("unknown logger type")
@@ -27,7 +27,7 @@ func Emit(log *zap.Logger) error {
 	if err := c.EmptyCore.Write(zapcore.Entry{
 		Time:    time.Now(),
 		Message: "cannonical_log_line",
-	}, c.Fields); err != nil {
+	}, append(c.Fields, fields...)); err != nil {
 		return err
 	}
 	if err := c.EmptyCore.Sync(); err != nil {
