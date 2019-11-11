@@ -21,8 +21,8 @@ func (f LogFactoryFunc) New() (*zap.Logger, error) {
 	return f()
 }
 
-// NewLogger will use the registered log factory to create a new logger
-func NewLogger() (*zap.Logger, error) {
+// NewFactoryLogger will use the registered log factory to create a new logger
+func NewFactoryLogger() (*zap.Logger, error) {
 	switch {
 	case factory == nil:
 		return nil, errors.New("no factory function defined, cannot create logger")
