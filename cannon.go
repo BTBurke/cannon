@@ -9,11 +9,11 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-// NewCore creates a new zapcore.Core that exends zap's logging core to enable cannonical logging when the Emit method
+// Core creates a new zapcore.Core that exends zap's logging core to enable cannonical logging when the Emit method
 // is called.  This is a low level primitive that allows you to pass additional options to the zap logging contructor to
 // get exactly the functionality you want.  For a higher level log constructor, you can use `cannon.NewProduction()`,
 // `cannon.NewDevelopment()`, or pass your own log factory to `RegisterFactory` and then call `cannon.NewLogger()`
-func NewCore() zap.Option {
+func Core() zap.Option {
 	return zap.WrapCore(func(c zapcore.Core) zapcore.Core {
 		core := &internal.CannonicalLog{
 			EmptyCore:   c,
@@ -45,11 +45,11 @@ func Emit(log *zap.Logger, fields ...zap.Field) error {
 // NewDevelopment gives you a `zap.NewDevelopment` configuration with the ability to emit a cannonical logline
 // at the end of the request
 func NewDevelopment(options ...zap.Option) (*zap.Logger, error) {
-	return zap.NewDevelopment(append(options, NewCore())...)
+	return zap.NewDevelopment(append(options, Core())...)
 }
 
 // NewProduction gives you a `zap.NewProduction` configuration with the ability to emit a cannonical logline
 // at the end of the request
 func NewProduction(options ...zap.Option) (*zap.Logger, error) {
-	return zap.NewProduction(append(options, NewCore())...)
+	return zap.NewProduction(append(options, Core())...)
 }

@@ -16,12 +16,12 @@ func TestFactory(t *testing.T) {
 	if factory == nil {
 		t.Fatalf("expected factory to be the factory function")
 	}
-	log, err := NewLogger()
+	log, err := NewFactoryLogger()
 	if log == nil || err != nil {
 		t.Fatalf("expected factory to create a new logger, but got %v", err)
 	}
 	ClearFactory()
-	_, err = NewLogger()
+	_, err = NewFactoryLogger()
 	if err == nil {
 		t.Fatalf("expected error when no factory defined")
 	}

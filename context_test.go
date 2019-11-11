@@ -9,7 +9,7 @@ import (
 
 func TestContext(t *testing.T) {
 	newLogger := func() *zap.Logger {
-		logger, err := zap.NewProduction(NewCore())
+		logger, err := zap.NewProduction(Core())
 		if err != nil {
 			t.Fatalf("failed to create logger: %s", err)
 		}
