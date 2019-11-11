@@ -7,7 +7,6 @@ import (
 var _ zapcore.Core = &CannonicalLog{}
 
 type CannonicalLog struct {
-	ID          string
 	WrappedCore zapcore.Core
 	EmptyCore   zapcore.Core
 	Fields      []zapcore.Field
