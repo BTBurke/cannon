@@ -81,9 +81,10 @@ To create a new cannon logger, you can use convenience methods for Zap's develop
 
 Cannon provides convenience methods for passing the logger through context to other services or request handlers.  Create a new logger for each request then log as you normally would through each handler and service, then call `cannon.Emit` when the request is finished.
 
+| Method | Result |
 | ----- | ----- |
 | `CtxLogger(parent context.Context, logger *zap.Logger) context.Context` | Passes the logger in the context |
-| `LoggerFromCtx(ctx context.Context) (*zap.Logger, error)` | Get logger from context
+| `LoggerFromCtx(ctx context.Context) (*zap.Logger, error)` | Get logger from context |
 
 For example, a simple middleware might be:
 
