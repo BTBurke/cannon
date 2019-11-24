@@ -1,5 +1,7 @@
 # Cannon - Cannonical Log Lines for Go
 
+[![GoDoc](https://godoc.org/github.com/BTBurke/cannon?status.svg)](https://godoc.org/github.com/BTBurke/cannon)
+
 Cannon builds on top of [Uber's zap logging library](https://github.com/uber-go/zap) to facilitate canonical logging in Go.  Canonical log lines (i.e. a single summary line emitted per request per service) are a great way to assist with performance monitoring.  [Stripe's engineering blog](https://stripe.com/blog/canonical-log-lines) has a good overview of the benefits of canonical log lines.  This library plugs into zap to let you emit a canonical log line at the end of processing each request by aggregating your structured key-value log entries throughout the duration of the request.
 
 ## Canonical Logging Example
