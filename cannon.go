@@ -30,6 +30,9 @@ func Emit(log *zap.Logger, fields ...zap.Field) error {
 	if !ok {
 		return errors.New("unknown logger type")
 	}
+	if len(c.Fields)+len(fields) == 0 {
+		return nil
+	}
 	if err := c.EmptyCore.Write(zapcore.Entry{
 		Time:    time.Now(),
 		Message: "cannonical_log_line",
