@@ -56,3 +56,8 @@ func NewDevelopment(options ...zap.Option) (*zap.Logger, error) {
 func NewProduction(options ...zap.Option) (*zap.Logger, error) {
 	return zap.NewProduction(append(options, Core())...)
 }
+
+// NewExample gives you a zap.NewExample logger that is useful for examples by stripping timestamps from example output
+func NewExample(options ...zap.Option) *zap.Logger {
+	return zap.NewExample(append(options, Core())...)
+}
