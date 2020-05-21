@@ -23,3 +23,17 @@ func LoggerFromCtx(ctx context.Context) (*zap.Logger, error) {
 	}
 	return logger, nil
 }
+
+// CtxSLogger will pass a sugared logger in the context
+func CtxSLogger(parent context.Context, logger *zap.SugaredLogger) context.Context {
+	return CtxLogger(parent, logger.Desugar())
+}
+
+// SSLoggerFromCtx will extract a sugared logger from the context
+func SLoggerFromCtx(ctx context.Context) (*zap.SugaredLogger, error) {
+	l, err := LoggerFromCtx(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return l.Sugar(), nil
+}
